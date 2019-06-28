@@ -32,7 +32,7 @@ class NoteListState extends State<NoteList> {
     return Scaffold(
 
 	    appBar: AppBar(
-		    title: Text('Notes'),
+		    title: Text('Notas'),
 	    ),
 
 	    body: getNoteListView(),
@@ -40,7 +40,7 @@ class NoteListState extends State<NoteList> {
 	    floatingActionButton: FloatingActionButton(
 		    onPressed: () {
 		      debugPrint('FAB clicked');
-		      navigateToDetail(Note('', '', 2), 'Add Note');
+		      navigateToDetail(Note('', '', 2), 'Adicionar Nota');
 		    },
 
 		    tooltip: 'Add Note',
@@ -82,7 +82,7 @@ class NoteListState extends State<NoteList> {
 
 						onTap: () {
 							debugPrint("ListTile Tapped");
-							navigateToDetail(this.noteList[position],'Edit Note');
+							navigateToDetail(this.noteList[position],'Editar Nota');
 						},
 
 					),
@@ -125,7 +125,7 @@ class NoteListState extends State<NoteList> {
 
 		int result = await databaseHelper.deleteNote(note.id);
 		if (result != 0) {
-			_showSnackBar(context, 'Note Deleted Successfully');
+			_showSnackBar(context, 'Nota Deletada com Sucesso');
 			updateListView();
 		}
 	}

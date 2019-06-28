@@ -20,7 +20,7 @@ class NoteDetail extends StatefulWidget {
 
 class NoteDetailState extends State<NoteDetail> {
 
-	static var _priorities = ['High', 'Low'];
+	static var _priorities = ['Alta', 'Baixa'];
 
 	DatabaseHelper helper = DatabaseHelper();
 
@@ -98,7 +98,7 @@ class NoteDetailState extends State<NoteDetail> {
 						    	updateTitle();
 						    },
 						    decoration: InputDecoration(
-							    labelText: 'Title',
+							    labelText: 'Título',
 							    labelStyle: textStyle,
 							    border: OutlineInputBorder(
 								    borderRadius: BorderRadius.circular(5.0)
@@ -118,7 +118,7 @@ class NoteDetailState extends State<NoteDetail> {
 							    updateDescription();
 						    },
 						    decoration: InputDecoration(
-								    labelText: 'Description',
+								    labelText: 'Descrição',
 								    labelStyle: textStyle,
 								    border: OutlineInputBorder(
 										    borderRadius: BorderRadius.circular(5.0)
@@ -137,7 +137,7 @@ class NoteDetailState extends State<NoteDetail> {
 									    color: Theme.of(context).primaryColorDark,
 									    textColor: Theme.of(context).primaryColorLight,
 									    child: Text(
-										    'Save',
+										    'Salvar',
 										    textScaleFactor: 1.5,
 									    ),
 									    onPressed: () {
@@ -156,7 +156,7 @@ class NoteDetailState extends State<NoteDetail> {
 									    color: Theme.of(context).primaryColorDark,
 									    textColor: Theme.of(context).primaryColorLight,
 									    child: Text(
-										    'Delete',
+										    'Deletar',
 										    textScaleFactor: 1.5,
 									    ),
 									    onPressed: () {
@@ -186,10 +186,10 @@ class NoteDetailState extends State<NoteDetail> {
 	// Convert the String priority in the form of integer before saving it to Database
 	void updatePriorityAsInt(String value) {
 		switch (value) {
-			case 'High':
+			case 'Alta':
 				note.priority = 1;
 				break;
-			case 'Low':
+			case 'Baixa':
 				note.priority = 2;
 				break;
 		}
@@ -233,9 +233,9 @@ class NoteDetailState extends State<NoteDetail> {
 		}
 
 		if (result != 0) {  // Success
-			_showAlertDialog('Status', 'Note Saved Successfully');
+			_showAlertDialog('Status', 'Nota Salva com Sucesso');
 		} else {  // Failure
-			_showAlertDialog('Status', 'Problem Saving Note');
+			_showAlertDialog('Status', 'Ocorreu um problema ao salvar a nota');
 		}
 
 	}
@@ -247,16 +247,16 @@ class NoteDetailState extends State<NoteDetail> {
 		// Case 1: If user is trying to delete the NEW NOTE i.e. he has come to
 		// the detail page by pressing the FAB of NoteList page.
 		if (note.id == null) {
-			_showAlertDialog('Status', 'No Note was deleted');
+			_showAlertDialog('Status', 'Uma nota não foi deletada');
 			return;
 		}
 
 		// Case 2: User is trying to delete the old note that already has a valid ID.
 		int result = await helper.deleteNote(note.id);
 		if (result != 0) {
-			_showAlertDialog('Status', 'Note Deleted Successfully');
+			_showAlertDialog('Status', 'Nota deletada com sucesso');
 		} else {
-			_showAlertDialog('Status', 'Error Occured while Deleting Note');
+			_showAlertDialog('Status', 'Um erro ocorreu ao tentar deletar uma nota');
 		}
 	}
 
